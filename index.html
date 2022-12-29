@@ -71,6 +71,66 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Linux翻墙" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/New/2022/12/29/Linux%E7%BF%BB%E5%A2%99/" class="article-date">
+  <time class="dt-published" datetime="2022-12-29T12:57:39.000Z" itemprop="datePublished">2022-12-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/New/2022/12/29/Linux%E7%BF%BB%E5%A2%99/">Linux翻墙</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Linux-虚拟机使用物理机代理（以centos7和cjpc为例）"><a href="#Linux-虚拟机使用物理机代理（以centos7和cjpc为例）" class="headerlink" title="Linux 虚拟机使用物理机代理（以centos7和cjpc为例）"></a>Linux 虚拟机使用物理机代理（以centos7和cjpc为例）</h1><p>作为一个探头出墙的主要方向，Linux竟然没有几个不错的适配的梯子，下个外国的sample都连接不上。好在作为宿主机的Windows梯子不少，但是物理机和虚拟机之间还有一层可悲的厚障壁，本篇探讨如何让虚拟机上的Linux使用上物理机的vpn。</p>
+<h3 id="Windows配置"><a href="#Windows配置" class="headerlink" title="Windows配置"></a>Windows配置</h3><p>要让虚拟机能稳定地使用物理机的代理，首先要尽可能的取得详细的物理机代理设置<br>这里使用<a target="_blank" rel="noopener" href="https://github.com/Fndroid/clash_for_windows_pkg/releases">Clash for Windows</a>进行代理的部署。(汉化可自行百度)<br>步骤如下：</p>
+<ol>
+<li>首先使用 <code>Windows键+r</code> 打开运行窗口</li>
+<li>在运行窗口中输入 <code>cmd</code> 打开命令行</li>
+<li>在命令行中输入 <code>ipconfig</code> 查看本机ip配置</li>
+<li>找到无线局域网适配器 WLAN 中的 IPv4 地址并记录，这是本机在局域网中的ip地址</li>
+<li>在使用的梯子官方获取到配置文件或者配置文件网址导入到Clash for Windows中，选择规则代理和合适的节点，然后上外网测试一下，确保Windows能使用vpn翻墙。</li>
+</ol>
+<h3 id="Linux配置"><a href="#Linux配置" class="headerlink" title="Linux配置"></a>Linux配置</h3><ol>
+<li>在设置中打开网络设置，找到<strong>Net Peoxy</strong>选项并打开</li>
+<li>将模式切换为手动</li>
+<li>在下面4个框中输入刚才记录的本机ip地址</li>
+<li>ip地址后面输入端口号（端口号在clash主页第一行端口信息处看到，一般为7890）</li>
+</ol>
+<h3 id="clash设置"><a href="#clash设置" class="headerlink" title="clash设置"></a>clash设置</h3><ol>
+<li>在clash主页将局域网代理的开关打卡即可</li>
+</ol>
+<p>最后返回虚拟机使用自带浏览器打开外网网站，即可正常访问，且命令行内诸如git命令等均能被加速</p>
+<p><img src="//fp1.fghrsh.net/2020/01/12/684bba76a9d38044c3dc05527633666d.jpg" alt="684bba76a9d38044c3dc05527633666d.jpg"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://shelter-shadow.github.io/New/2022/12/29/Linux%E7%BF%BB%E5%A2%99/" data-id="clc93pr9u0000nwum6wn1gs0r" data-title="Linux翻墙" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/New/tags/Linux/" rel="tag">Linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-建站" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/New/2022/12/22/%E5%BB%BA%E7%AB%99/" class="article-date">
@@ -151,7 +211,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://shelter-shadow.github.io/New/2022/12/22/%E5%BB%BA%E7%AB%99/" data-id="clbyzkweq00012kum65qlf77k" data-title="建站" class="article-share-link">Share</a>
+      <a data-url="http://shelter-shadow.github.io/New/2022/12/22/%E5%BB%BA%E7%AB%99/" data-id="clc93pra40005nwumhl1fcj1z" data-title="建站" class="article-share-link">Share</a>
       
       
       
@@ -187,7 +247,7 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="Git-1"><a href="#Git-1" class="headerlink" title="Git-1"></a>Git-1</h1><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>既然是依托于GitHub构建的博客，那么就一定离不开这个广为人知的分布式版本管理系统 <strong>Git</strong>了<br>本篇作为这个博客的“占位符”，将简单介绍一下什么是Git和Git的一些本地基本使用方法。(顺便学习和习惯一下Markdown写作)<br>欢迎勘误，联系邮件：<a href="mailto:&#108;&#x74;&#106;&#x31;&#x36;&#49;&#x39;&#55;&#x34;&#x32;&#x33;&#56;&#64;&#49;&#x36;&#x33;&#46;&#99;&#x6f;&#x6d;">&#108;&#x74;&#106;&#x31;&#x36;&#49;&#x39;&#55;&#x34;&#x32;&#x33;&#56;&#64;&#49;&#x36;&#x33;&#46;&#99;&#x6f;&#x6d;</a></p>
+        <h1 id="Git-1"><a href="#Git-1" class="headerlink" title="Git-1"></a>Git-1</h1><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>既然是依托于GitHub构建的博客，那么就一定离不开这个广为人知的分布式版本管理系统 <strong>Git</strong>了<br>本篇作为这个博客的“占位符”，将简单介绍一下什么是Git和Git的一些本地基本使用方法。(顺便学习和习惯一下Markdown写作)<br>欢迎勘误，联系邮件：<a href="mailto:&#x6c;&#116;&#106;&#49;&#54;&#x31;&#57;&#55;&#x34;&#x32;&#51;&#56;&#64;&#x31;&#54;&#51;&#x2e;&#99;&#x6f;&#x6d;">&#x6c;&#116;&#106;&#49;&#54;&#x31;&#57;&#55;&#x34;&#x32;&#51;&#56;&#64;&#x31;&#54;&#51;&#x2e;&#99;&#x6f;&#x6d;</a></p>
 <h2 id="什么是Git"><a href="#什么是Git" class="headerlink" title="什么是Git"></a>什么是Git</h2><p><del>关于这个网上有太多更加优秀的释义了，推荐百度。</del></p>
 <p>概括来说Git是一个开源的分布式的版本控制系统。</p>
 <h3 id="什么是版本控制？"><a href="#什么是版本控制？" class="headerlink" title="什么是版本控制？"></a>什么是版本控制？</h3><p>以一个不专业的简单例子来说当你准备进行一次演讲，那么在撰稿阶段你的文件夹里也许会出现诸如:</p>
@@ -243,7 +303,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://shelter-shadow.github.io/New/2022/12/21/%E7%AC%AC%E4%B8%80%E7%AF%87&Git-1/" data-id="clbyzkwes00022kumgw1ogmzw" data-title="第一篇&amp;Git" class="article-share-link">Share</a>
+      <a data-url="http://shelter-shadow.github.io/New/2022/12/21/%E7%AC%AC%E4%B8%80%E7%AF%87&Git-1/" data-id="clc93pra30004nwumf2fz9mfx" data-title="第一篇&amp;Git" class="article-share-link">Share</a>
       
       
       
@@ -296,7 +356,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://shelter-shadow.github.io/New/2022/12/20/hello-world/" data-id="clbyzkwem00002kumadbhgp5l" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://shelter-shadow.github.io/New/2022/12/20/hello-world/" data-id="clc93pr9y0001nwuma0741dv3" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
@@ -321,7 +381,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/New/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/New/tags/Hexo/" rel="tag">Hexo</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/New/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/New/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/New/tags/Linux/" rel="tag">Linux</a></li></ul>
     </div>
   </div>
 
@@ -331,7 +391,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/New/tags/Git/" style="font-size: 10px;">Git</a> <a href="/New/tags/Hexo/" style="font-size: 10px;">Hexo</a>
+      <a href="/New/tags/Git/" style="font-size: 10px;">Git</a> <a href="/New/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/New/tags/Linux/" style="font-size: 10px;">Linux</a>
     </div>
   </div>
 
@@ -351,6 +411,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/New/2022/12/29/Linux%E7%BF%BB%E5%A2%99/">Linux翻墙</a>
+          </li>
         
           <li>
             <a href="/New/2022/12/22/%E5%BB%BA%E7%AB%99/">建站</a>

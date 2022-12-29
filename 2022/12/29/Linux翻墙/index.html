@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Linux翻墙 | Luo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Linux 虚拟机使用物理机代理（以centos7和cjpc为例）作为一个探头出墙的主要方向，Linux竟然没有几个不错的适配的梯子，下个外国的sample都连接不上。好在作为宿主机的Windows梯子不少，但是物理机和虚拟机之间还有一层可悲的厚障壁，本篇探讨如何让虚拟机上的Linux使用上物理机的vpn。 Windows配置要让虚拟机能稳定地使用物理机的代理，首先要尽可能的取得详细的物理机代理设">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux翻墙">
+<meta property="og:url" content="http://shelter-shadow.github.io/New/2022/12/29/Linux%E7%BF%BB%E5%A2%99/index.html">
+<meta property="og:site_name" content="Luo">
+<meta property="og:description" content="Linux 虚拟机使用物理机代理（以centos7和cjpc为例）作为一个探头出墙的主要方向，Linux竟然没有几个不错的适配的梯子，下个外国的sample都连接不上。好在作为宿主机的Windows梯子不少，但是物理机和虚拟机之间还有一层可悲的厚障壁，本篇探讨如何让虚拟机上的Linux使用上物理机的vpn。 Windows配置要让虚拟机能稳定地使用物理机的代理，首先要尽可能的取得详细的物理机代理设">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://fp1.fghrsh.net/2020/01/12/684bba76a9d38044c3dc05527633666d.jpg">
+<meta property="article:published_time" content="2022-12-29T12:57:39.000Z">
+<meta property="article:modified_time" content="2022-12-29T13:07:01.948Z">
+<meta property="article:author" content="Unicorn Luo">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://fp1.fghrsh.net/2020/01/12/684bba76a9d38044c3dc05527633666d.jpg">
+  
+    <link rel="alternate" href="/New/atom.xml" title="Luo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/New/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/New/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/New/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/New/" id="logo">Luo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/New/">Home</a>
+        
+          <a class="main-nav-link" href="/New/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/New/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://shelter-shadow.github.io/New"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Linux翻墙" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/New/2022/12/29/Linux%E7%BF%BB%E5%A2%99/" class="article-date">
+  <time class="dt-published" datetime="2022-12-29T12:57:39.000Z" itemprop="datePublished">2022-12-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Linux翻墙
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Linux-虚拟机使用物理机代理（以centos7和cjpc为例）"><a href="#Linux-虚拟机使用物理机代理（以centos7和cjpc为例）" class="headerlink" title="Linux 虚拟机使用物理机代理（以centos7和cjpc为例）"></a>Linux 虚拟机使用物理机代理（以centos7和cjpc为例）</h1><p>作为一个探头出墙的主要方向，Linux竟然没有几个不错的适配的梯子，下个外国的sample都连接不上。好在作为宿主机的Windows梯子不少，但是物理机和虚拟机之间还有一层可悲的厚障壁，本篇探讨如何让虚拟机上的Linux使用上物理机的vpn。</p>
+<h3 id="Windows配置"><a href="#Windows配置" class="headerlink" title="Windows配置"></a>Windows配置</h3><p>要让虚拟机能稳定地使用物理机的代理，首先要尽可能的取得详细的物理机代理设置<br>这里使用<a target="_blank" rel="noopener" href="https://github.com/Fndroid/clash_for_windows_pkg/releases">Clash for Windows</a>进行代理的部署。(汉化可自行百度)<br>步骤如下：</p>
+<ol>
+<li>首先使用 <code>Windows键+r</code> 打开运行窗口</li>
+<li>在运行窗口中输入 <code>cmd</code> 打开命令行</li>
+<li>在命令行中输入 <code>ipconfig</code> 查看本机ip配置</li>
+<li>找到无线局域网适配器 WLAN 中的 IPv4 地址并记录，这是本机在局域网中的ip地址</li>
+<li>在使用的梯子官方获取到配置文件或者配置文件网址导入到Clash for Windows中，选择规则代理和合适的节点，然后上外网测试一下，确保Windows能使用vpn翻墙。</li>
+</ol>
+<h3 id="Linux配置"><a href="#Linux配置" class="headerlink" title="Linux配置"></a>Linux配置</h3><ol>
+<li>在设置中打开网络设置，找到<strong>Net Peoxy</strong>选项并打开</li>
+<li>将模式切换为手动</li>
+<li>在下面4个框中输入刚才记录的本机ip地址</li>
+<li>ip地址后面输入端口号（端口号在clash主页第一行端口信息处看到，一般为7890）</li>
+</ol>
+<h3 id="clash设置"><a href="#clash设置" class="headerlink" title="clash设置"></a>clash设置</h3><ol>
+<li>在clash主页将局域网代理的开关打卡即可</li>
+</ol>
+<p>最后返回虚拟机使用自带浏览器打开外网网站，即可正常访问，且命令行内诸如git命令等均能被加速</p>
+<p><img src="//fp1.fghrsh.net/2020/01/12/684bba76a9d38044c3dc05527633666d.jpg" alt="684bba76a9d38044c3dc05527633666d.jpg"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://shelter-shadow.github.io/New/2022/12/29/Linux%E7%BF%BB%E5%A2%99/" data-id="clc93pr9u0000nwum6wn1gs0r" data-title="Linux翻墙" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/New/tags/Linux/" rel="tag">Linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/New/2022/12/22/%E5%BB%BA%E7%AB%99/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">建站</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/New/tags/Git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/New/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/New/tags/Linux/" rel="tag">Linux</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/New/tags/Git/" style="font-size: 10px;">Git</a> <a href="/New/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/New/tags/Linux/" style="font-size: 10px;">Linux</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/New/archives/2022/12/">December 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/New/2022/12/29/Linux%E7%BF%BB%E5%A2%99/">Linux翻墙</a>
+          </li>
+        
+          <li>
+            <a href="/New/2022/12/22/%E5%BB%BA%E7%AB%99/">建站</a>
+          </li>
+        
+          <li>
+            <a href="/New/2022/12/21/%E7%AC%AC%E4%B8%80%E7%AF%87&Git-1/">第一篇&amp;Git</a>
+          </li>
+        
+          <li>
+            <a href="/New/2022/12/20/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 Unicorn Luo<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/New/" class="mobile-nav-link">Home</a>
+  
+    <a href="/New/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/New/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/New/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/New/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
