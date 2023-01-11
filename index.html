@@ -71,6 +71,62 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-liunx循环登录" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/New/2023/01/11/liunx%E5%BE%AA%E7%8E%AF%E7%99%BB%E5%BD%95/" class="article-date">
+  <time class="dt-published" datetime="2023-01-11T10:22:20.000Z" itemprop="datePublished">2023-01-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/New/2023/01/11/liunx%E5%BE%AA%E7%8E%AF%E7%99%BB%E5%BD%95/">liunx循环登录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Linux由于更改环境变量导致登录后黑屏再次进入登录界面解决办法"><a href="#Linux由于更改环境变量导致登录后黑屏再次进入登录界面解决办法" class="headerlink" title="Linux由于更改环境变量导致登录后黑屏再次进入登录界面解决办法"></a>Linux由于更改环境变量导致登录后黑屏再次进入登录界面解决办法</h1><p>本来是想一步到位把go语言的bin文件夹添加到环境变量中，但是由于未知原因更改了&#x2F;etc&#x2F;environment文件之后系统就再也登录不上了(；д；)于是捣鼓了好久终于把系统救回来了</p>
+<p>下面是正篇</p>
+<h2 id="1-首先进入单用户模式"><a href="#1-首先进入单用户模式" class="headerlink" title="1.首先进入单用户模式"></a>1.首先进入单用户模式</h2><ul>
+<li>重启Linux</li>
+<li>在出现<code>Centos Linux(3.10.0......)7</code>和<code>Centos Linux(0-rescure.....)</code>两个选项的界面按<code>e</code>键进入内核编辑模式</li>
+<li>找到以<code>LANG=en_US.UTF-8</code>结尾的那一行</li>
+<li>将<code>crashkernel</code>前面的<code>ro</code>改为<code>rw</code></li>
+<li>删除<code>rhgb quiet</code></li>
+<li>在此行结尾加上<code>init=/bin/bash</code></li>
+<li>接着按<code>Ctrl+x</code>即可进入单用户模式</li>
+</ul>
+<h2 id="2-重置修改过的文件"><a href="#2-重置修改过的文件" class="headerlink" title="2.重置修改过的文件"></a>2.重置修改过的文件</h2><p>此时Linux处在DOS命令行的界面下，通过<code>vim</code>或<code>nano</code>打开刚才修改过的文件，将修改内容还原</p>
+<h2 id="3-退出单用户模式"><a href="#3-退出单用户模式" class="headerlink" title="3.退出单用户模式"></a>3.退出单用户模式</h2><ul>
+<li>输入<code>exec /sbin/init</code></li>
+</ul>
+<h2 id="4-回到用户选择界面登录即可"><a href="#4-回到用户选择界面登录即可" class="headerlink" title="4.回到用户选择界面登录即可"></a>4.回到用户选择界面登录即可</h2><p><img src="//fp1.fghrsh.net/2022/12/29/eb358d4eaf864565e9d8c92ea36c01f2.png" alt="eb358d4eaf864565e9d8c92ea36c01f2.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://shelter-shadow.github.io/New/2023/01/11/liunx%E5%BE%AA%E7%8E%AF%E7%99%BB%E5%BD%95/" data-id="clcrlm0hs0000ioum1q2jgg8n" data-title="liunx循环登录" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/New/tags/Linux/" rel="tag">Linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Linux翻墙" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/New/2022/12/29/Linux%E7%BF%BB%E5%A2%99/" class="article-date">
@@ -117,7 +173,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://shelter-shadow.github.io/New/2022/12/29/Linux%E7%BF%BB%E5%A2%99/" data-id="clc93pr9u0000nwum6wn1gs0r" data-title="Linux翻墙" class="article-share-link">Share</a>
+      <a data-url="http://shelter-shadow.github.io/New/2022/12/29/Linux%E7%BF%BB%E5%A2%99/" data-id="clcrlm0i10003ioumfntj1riq" data-title="Linux翻墙" class="article-share-link">Share</a>
       
       
       
@@ -211,7 +267,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://shelter-shadow.github.io/New/2022/12/22/%E5%BB%BA%E7%AB%99/" data-id="clc93pra40005nwumhl1fcj1z" data-title="建站" class="article-share-link">Share</a>
+      <a data-url="http://shelter-shadow.github.io/New/2022/12/22/%E5%BB%BA%E7%AB%99/" data-id="clcrlm0i30006ioum7npq6vpk" data-title="建站" class="article-share-link">Share</a>
       
       
       
@@ -247,7 +303,7 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="Git-1"><a href="#Git-1" class="headerlink" title="Git-1"></a>Git-1</h1><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>既然是依托于GitHub构建的博客，那么就一定离不开这个广为人知的分布式版本管理系统 <strong>Git</strong>了<br>本篇作为这个博客的“占位符”，将简单介绍一下什么是Git和Git的一些本地基本使用方法。(顺便学习和习惯一下Markdown写作)<br>欢迎勘误，联系邮件：<a href="mailto:&#x6c;&#116;&#106;&#49;&#54;&#x31;&#57;&#55;&#x34;&#x32;&#51;&#56;&#64;&#x31;&#54;&#51;&#x2e;&#99;&#x6f;&#x6d;">&#x6c;&#116;&#106;&#49;&#54;&#x31;&#57;&#55;&#x34;&#x32;&#51;&#56;&#64;&#x31;&#54;&#51;&#x2e;&#99;&#x6f;&#x6d;</a></p>
+        <h1 id="Git-1"><a href="#Git-1" class="headerlink" title="Git-1"></a>Git-1</h1><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>既然是依托于GitHub构建的博客，那么就一定离不开这个广为人知的分布式版本管理系统 <strong>Git</strong>了<br>本篇作为这个博客的“占位符”，将简单介绍一下什么是Git和Git的一些本地基本使用方法。(顺便学习和习惯一下Markdown写作)<br>欢迎勘误，联系邮件：<a href="mailto:&#108;&#x74;&#x6a;&#x31;&#54;&#x31;&#57;&#x37;&#x34;&#50;&#x33;&#x38;&#x40;&#x31;&#54;&#x33;&#x2e;&#99;&#111;&#109;">&#108;&#x74;&#x6a;&#x31;&#54;&#x31;&#57;&#x37;&#x34;&#50;&#x33;&#x38;&#x40;&#x31;&#54;&#x33;&#x2e;&#99;&#111;&#109;</a></p>
 <h2 id="什么是Git"><a href="#什么是Git" class="headerlink" title="什么是Git"></a>什么是Git</h2><p><del>关于这个网上有太多更加优秀的释义了，推荐百度。</del></p>
 <p>概括来说Git是一个开源的分布式的版本控制系统。</p>
 <h3 id="什么是版本控制？"><a href="#什么是版本控制？" class="headerlink" title="什么是版本控制？"></a>什么是版本控制？</h3><p>以一个不专业的简单例子来说当你准备进行一次演讲，那么在撰稿阶段你的文件夹里也许会出现诸如:</p>
@@ -303,7 +359,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://shelter-shadow.github.io/New/2022/12/21/%E7%AC%AC%E4%B8%80%E7%AF%87&Git-1/" data-id="clc93pra30004nwumf2fz9mfx" data-title="第一篇&amp;Git" class="article-share-link">Share</a>
+      <a data-url="http://shelter-shadow.github.io/New/2022/12/21/%E7%AC%AC%E4%B8%80%E7%AF%87&Git-1/" data-id="clcrlm0i40007ioumeacm8zbq" data-title="第一篇&amp;Git" class="article-share-link">Share</a>
       
       
       
@@ -356,7 +412,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://shelter-shadow.github.io/New/2022/12/20/hello-world/" data-id="clc93pr9y0001nwuma0741dv3" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://shelter-shadow.github.io/New/2022/12/20/hello-world/" data-id="clcrlm0i20004ioumc1059lr3" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
@@ -391,7 +447,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/New/tags/Git/" style="font-size: 10px;">Git</a> <a href="/New/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/New/tags/Linux/" style="font-size: 10px;">Linux</a>
+      <a href="/New/tags/Git/" style="font-size: 10px;">Git</a> <a href="/New/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/New/tags/Linux/" style="font-size: 20px;">Linux</a>
     </div>
   </div>
 
@@ -400,7 +456,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/New/archives/2022/12/">December 2022</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/New/archives/2023/01/">January 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/New/archives/2022/12/">December 2022</a></li></ul>
     </div>
   </div>
 
@@ -411,6 +467,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/New/2023/01/11/liunx%E5%BE%AA%E7%8E%AF%E7%99%BB%E5%BD%95/">liunx循环登录</a>
+          </li>
         
           <li>
             <a href="/New/2022/12/29/Linux%E7%BF%BB%E5%A2%99/">Linux翻墙</a>
@@ -441,7 +501,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       
-      &copy; 2022 Unicorn Luo<br>
+      &copy; 2023 Unicorn Luo<br>
       Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
